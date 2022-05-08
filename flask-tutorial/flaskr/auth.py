@@ -59,13 +59,14 @@ def login():
 
         if user is None:
             error = 'Incorrect username.'
+            
         elif not check_password_hash(user['password'], password):
             error = 'Incorrect password.'
 
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('auth.Home'))
 
         flash(error)
 
@@ -89,7 +90,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.Home'))
 
 ########## REQUEST LOGIN ##########
 

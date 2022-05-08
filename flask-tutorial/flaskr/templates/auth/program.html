@@ -98,10 +98,10 @@ button{
     </a>
     <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
       <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i> Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <a class="w3-bar-item"><span><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> SignUp</a>
@@ -112,7 +112,6 @@ button{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
       <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
     {% else %}
