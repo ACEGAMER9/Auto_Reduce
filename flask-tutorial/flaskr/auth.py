@@ -146,10 +146,17 @@ def program():
         opredict = clf.predict(inpredict)
 
         return opredict
-    Status = prediction(random.randrange(50,80), weather_desc, temp_city, random.randrange(0,100))
+    Moisture = random.randrange(50,80)
+    Light = random.randrange(0,100)
+    Status = prediction(Moisture, weather_desc, temp_city, Light)
     if Status == 0:
         Status = "BAD"
     else:
         Status = "GOOD"
 
-    return render_template('auth/program.html',data={"temp":ftemp_city, "weather":weather_desc, "Status":Status})
+    return render_template('auth/program.html', 
+                            data={"temp":ftemp_city, 
+                                  "weather":weather_desc, 
+                                  "Status":Status,
+                                  "Moisture":Moisture,
+                                  "Light":Light})
