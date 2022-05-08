@@ -59,13 +59,13 @@ button{
     <div class="w3-quarter">
       <div class="w3-container w3-white w3-padding-16 w3-round">
         <div class="w3-auto fa fa-cloud w3-xxlarge"><h5>Weather</h5></div>
-        <div class="w3-right"><h5>??</h5></div>
+        <div class="w3-right"><h5>{{data.weather}}</h5></div>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-white w3-padding-16 w3-round">
         <div class="w3-auto fa fa-thermometer-half w3-xxlarge w3-round"><h5>Temperature</h5></div>
-        <div class="w3-right"><h5>??</h5></div>
+        <div class="w3-right"><h5>{{data.temp}}</h5></div>
       </div>
     </div>
     <div class="w3-quarter">
@@ -78,7 +78,7 @@ button{
   </div>
   <div class="w3-rest">
     <div class=" w3-container w3-text-white w3-padding-16 w3-round">
-      <div class="w3-center"><h5>Staus : ??</h5></div>
+      <div class="w3-center"><h5>Status : {{data.Status}}</h5></div>
       <div class="w3-rest">
         <button class="w3-rest w3-button w3-block w3-white" >Botton1</button>
         <button class="w3-rest w3-button w3-block w3-white" >Botton2</button>

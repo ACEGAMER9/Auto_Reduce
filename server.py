@@ -5,14 +5,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 import matplotlib.pyplot as plt #Import for Test#
-import time 
 import random #Import for Test#
 from sklearn.metrics import accuracy_score
 import requests
 from datetime import datetime
 
 ########## END OF Import Libary ##########
-global weather_desc
 
 ########## SECTION OF PREDICTOR MODEL ##########
 
