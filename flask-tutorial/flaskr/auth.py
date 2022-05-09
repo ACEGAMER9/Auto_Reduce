@@ -146,7 +146,7 @@ def program():
         opredict = clf.predict(inpredict)
 
         return opredict
-    Moisture = random.randrange(50,80)
+    Moisture = random.randrange(50,100)
     Light = random.randrange(0,100)
     Status = prediction(Moisture, weather_desc, temp_city, Light)
     if Status == 0:
