@@ -47,46 +47,20 @@ button{
 
   <!-- Header -->
   <header class="w3-container " style="padding-top:30px">
-    <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
+    <h5><b><i class="fa fa-user-circle"></i> Profile</b></h5>
+    
   </header>
-
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto fa fa-tint w3-xxlarge"><h5>Moisture</h5></div>
-        <div class="w3-right"><h5>{{data.Moisture}}</h5></div>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto fa fa-cloud w3-xxlarge"><h5>Weather</h5></div>
-        <div class="w3-right"><h5>{{data.weather}}</h5></div>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto fa fa-thermometer-half w3-xxlarge w3-round"><h5>Temperature</h5></div>
-        <div class="w3-right"><h5>{{data.temp}}</h5></div>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto fa fa-sun-o w3-xxlarge"><h5>Light</h5></div>
-        <div class="w3-right"><h5>{{data.Light}}</h5></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="w3-rest">
     <div class=" w3-container w3-text-white w3-padding-16 w3-round">
-      <div class="w3-center"><h5>Status : {{data.Status}}</h5></div>
+      <div class="w3-center"><h5></h5></div>
       <div class="w3-rest">
-        <button class="w3-rest w3-button w3-block w3-white" >Botton1</button>
-        <button class="w3-rest w3-button w3-block w3-white" >Botton2</button>
-        <button class="w3-rest w3-button w3-block w3-white" >Botton3</button>
-        <button class="w3-rest w3-button w3-block w3-white" >Botton4</button>
-        <button class="w3-rest w3-button w3-block w3-teal" >Start</button>
-        <button class="w3-rest w3-button w3-block w3-red" >Stop</button>
+        <div class="w3-display-middle" style="white-space:nowrap;">
+          <span class="w3-center w3-padding-large w3-white w3-xlarge w3-wide w3-animate-opacity">
+            <span class="w3-xlarge""></span> COMMING SOON</span><br>  
+            <span class="w3-large w3-animate-zoom"> >>>AUTO REDUCE WATER</span> 
+            <span class="w3-small w3-animate-opacity"> PROJECT</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -102,7 +76,6 @@ button{
       <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i> Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-        <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> SignUp</a>
@@ -122,7 +95,6 @@ button{
   </div>
 </div>
 
-</div>
 
 <script>
   // Modal Image Gallery

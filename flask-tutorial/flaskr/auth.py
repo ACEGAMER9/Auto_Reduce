@@ -111,6 +111,13 @@ def login_required(view):
 
 ########## PROGRAM ROUTE ##########
 
+@bp.route('/profile', methods=('GET', 'POST'))
+def profile():
+
+    return render_template('auth/profile.html')
+
+########## PROGRAM ROUTE ##########
+
 @bp.route('/program', methods=('GET', 'POST'))
 def program():
     # https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key}
