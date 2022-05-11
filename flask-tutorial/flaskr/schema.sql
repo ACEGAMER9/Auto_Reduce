@@ -13,6 +13,8 @@ CREATE TABLE post (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
-  Zipcode TEXT NOT NULL,
+  fullname TEXT NOT NULL,
+  adress TEXT NOT NULL,
+  zipcode TEXT NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
