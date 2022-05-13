@@ -21,9 +21,43 @@ body, html {
   border: none; 
 }
 
+body{
+  background-image: url(https://free4kwallpapers.com/uploads/originals/2019/11/15/minimal-mojave-wallpaper.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form{
+    height: 80px;
+    width: 150px;
+    background-color: rgba(255,255,255,0.13);
+    position: auto;
+    top: 10%;
+    left: 10%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
 button{
-    margin-top: 5px;
-    margin-right: 10%;
+    margin-bottom: 5px;
     width: 100%;
     height: 50%;
     background-color: #ffffff;
@@ -35,7 +69,7 @@ button{
 
 </style>
 </head>
-<body style="background-image: url('https://www.iplanetstore.in/assets/home/images/macpro13-files/v/macbook-pro-13/f/images/overview/macos_bg__b9yaapi9sjv6_large_2x.jpg');">
+<body class="w3-animate-opacity">
   <div class="w3-container">
 </div>
 
@@ -51,45 +85,46 @@ button{
   </header>
 
   <div class="w3-row-padding w3-margin-bottom w3-center">
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto w3-left"><h5>Moisture</h5></div>
-        <div class="w3-auto w3-right"><h5>{{data.Moisture}}</h5></div>
+    <form class="w3-quarter">
+      <div class="w3-container w3-opacity-min">
+        <div class="w3-auto w3-left w3-opacity-off"><h5>Moisture</h5></div>
+        <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.Moisture}}</h5></div>
       </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto w3-left"><h5>Weather</h5></div>
-        <div class="w3-auto w3-right"><h5>{{data.weather}}</h5></div>
+    </form>
+    <form class="w3-quarter">
+      <div class="w3-container w3-opacity-min">
+        <div class="w3-auto w3-left w3-opacity-off"><h5>Weather</h5></div>
+        <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.weather}}</h5></div>
       </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto w3-left"><h5>Temperature</h5></div>
-        <div class="w3-auto w3-right"><h5>{{data.temp}}</h5></div>
+    </form>
+    <form class="w3-quarter">
+      <div class="w3-container w3-opacity-min">
+        <div class="w3-auto w3-left w3-opacity-off"><h5>Temperature</h5></div>
+        <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.temp}}</h5></div>
       </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-white w3-padding-16 w3-round">
-        <div class="w3-auto w3-left"><h5>Light</h5></div>
-        <div class="w3-auto w3-right"><h5>{{data.Light}}</h5></div>
+    </form>
+    <form class="w3-quarter">
+      <div class="w3-container w3-opacity-min">
+        <div class="w3-auto w3-left w3-opacity-off"><h5>Light</h5></div>
+        <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.Light}}</h5></div>
         </div>
-      </div>
-    </div>
+      </form>
   </div>
   <div>
-    <div class=" w3-container w3-text-white w3-padding-16 w3-round w3-center">
-      <div class="w3-center"><h5>Status : {{data.Status}}</h5></div>
-      <div>
-        <div class="w3-container w3-rest w3-center">
-          <button class="w3-auto w3-button w3-block w3-white" >Botton1</button>
-          <button class="w3-auto w3-button w3-block w3-white" >Botton2</button>
-          <button class="w3-auto w3-button w3-block w3-white" >Botton3</button>
-          <button class="w3-auto w3-button w3-block w3-white" >Botton4</button>
-          <button class="w3-rest w3-button w3-block w3-teal" >Start</button>
-          <button class="w3-rest w3-button w3-block w3-red" >Stop</button>
-      </div>
+    <div>
+      <div class="w3-center"><h3>Status : {{data.Status}}</h3></div>
     </div>
+      <div class="w3-display-bottommiddle w3-text-white w3-padding-16 w3-round">
+        <div>
+          <div class="w3-rest w3-center">
+            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton1</button>
+            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton2</button>
+            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton3</button>
+            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton4</button>
+            <button class="w3-auto w3-button w3-block w3-teal" >Start</button>
+            <button class="w3-auto w3-button w3-block w3-red" >Stop</button>
+        </div>
+      </div>
   </div>
 
   <!-- Navbar (sit on top) -->

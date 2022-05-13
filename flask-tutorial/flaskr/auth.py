@@ -1,4 +1,5 @@
 import functools
+import sqlite3
 from re import A
 import requests
 import pandas as pd
@@ -7,7 +8,7 @@ from flask import (
 Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from flaskr.db import get_db
+from flaskr.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 
@@ -113,37 +114,59 @@ def login_required(view):
 
 @bp.route('/profile', methods=('GET', 'POST'))
 def profile():
+    db = get_db()
+    user = db.execute('SELECT * FROM pfile WHERE p_id = ?;', (g.user['id'],)
+        ).fetchone()
 
-    return render_template('auth/profile.html')
+    if user is not None:
+        database = get_db2()
+        con = sqlite3.connect(database)
+        cur = con.cursor()
+        row = cur.execute('SELECT * FROM pfile WHERE p_id = ?',(g.user['id'],)).fetchone()
+
+        fullname = row[2]
+        adress  = row[3]
+        zipcode = row[4]
+    else:
+        fullname = "----------------------"
+        adress  = "PLESE EDIT YOUR PROFILE"
+        zipcode = "----------------------"
+
+    return render_template('auth/profile.html', 
+                            data={"fullname":fullname, 
+                                  "adress":adress, 
+                                  "zipcode":zipcode})
     
 ########## EDITPROFILE ROUTE ##########
 
 @bp.route('/editprofile', methods=('GET', 'POST'))
 def editprofile():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        fullname = request.form['fullname']
+        adress = request.form['adress']
+        zipcode = request.form['zipcode']
+        user_id = session.get('user_id')
         db = get_db()
-        error = None
 
-        if not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-
-        if error is None:
-            try:
+        if user_id is not None:
+            pro_user = db.execute(
+            'SELECT * FROM pfile WHERE p_id = ?', (user_id,)).fetchone()
+            if  pro_user is not None:
                 db.execute(
-                    "INSERT INTO user (username, password) VALUES (?, ?)",
-                    (username, generate_password_hash(password)),
+                    'UPDATE pfile SET fullname = ?, adress = ?, zipcode = ?, p_id = ?'
+                    ' WHERE p_id = ?',
+                    (fullname, adress, zipcode, g.user['id'], g.user['id'])
                 )
                 db.commit()
-            except db.IntegrityError:
-                error = f"User {username} is already registered."
+                return redirect(url_for("auth.profile"))
             else:
-                return redirect(url_for("auth.login"))
+                db.execute(
+                    "INSERT INTO pfile (fullname, adress, zipcode, p_id) VALUES (?, ?, ?, ?)",
+                    (fullname, adress, zipcode, g.user['id']),
+                )
+                db.commit()
+                return redirect(url_for("auth.profile"))
 
-        flash(error)
 
     return render_template('auth/editprofile.html')
 
