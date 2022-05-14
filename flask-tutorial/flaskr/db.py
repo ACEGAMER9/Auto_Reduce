@@ -16,7 +16,7 @@ def get_db():
     return g.db
 
 def get_db2():
-    database = r"C:\Users\nuttp\OneDrive\Desktop\Project Summer2\Auto_Reduce\flask-tutorial\instance\flaskr.sqlite"
+    database = r"..\flask-tutorial\instance\flaskr.sqlite"
 
     return database
 
