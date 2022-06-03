@@ -174,9 +174,19 @@ def editprofile():
 
 @bp.route('/program', methods=('GET', 'POST'))
 def program():
+    db = get_db()
+    user = db.execute('SELECT * FROM pfile WHERE p_id = ?;', (g.user['id'],)
+        ).fetchone()
+
+    if user is not None:
+        database = get_db2()
+        con = sqlite3.connect(database)
+        cur = con.cursor()
+        row = cur.execute('SELECT * FROM pfile WHERE p_id = ?',(g.user['id'],)).fetchone()
+        Zipcode = row[4] # ZIPCODE FOR SELECT LOCATION
     # https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key}
     user_api = "7b9a86d2006cc3e7c4c1c2d4bc38d743"
-    Zipcode = "20000" # ZIPCODE FOR SELECT LOCATION
+    # Zipcode = "20000" # ZIPCODE FOR SELECT LOCATION
     complete_api_link = "https://api.openweathermap.org/data/2.5/weather?zip="+Zipcode+",th&appid="+user_api
     api_link = requests.get(complete_api_link)
     api_data = api_link.json()
