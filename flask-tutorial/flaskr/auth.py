@@ -184,6 +184,8 @@ def program():
         cur = con.cursor()
         row = cur.execute('SELECT * FROM pfile WHERE p_id = ?',(g.user['id'],)).fetchone()
         Zipcode = row[4] # ZIPCODE FOR SELECT LOCATION
+    else :
+        Zipcode = "22000"
     # https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key}
     user_api = "7b9a86d2006cc3e7c4c1c2d4bc38d743"
     # Zipcode = "20000" # ZIPCODE FOR SELECT LOCATION
