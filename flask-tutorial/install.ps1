@@ -1,5 +1,4 @@
 cd flask-tutorial
-python -m flask init-db
 pip install -r requirements.txt
 python3 -m venv venv
 $env:FLASK_APP = "flaskr"
