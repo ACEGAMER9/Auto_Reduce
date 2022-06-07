@@ -193,14 +193,15 @@ def program():
     api_link = requests.get(complete_api_link)
     api_data = api_link.json()
     temp_city = ((api_data['main']['temp']) - 273.15)
+    hmdt = api_data['main']['humidity']
     weather_desc = api_data['weather'][0]['description']
     ftemp_city ="{:.2f}".format(float(temp_city))
 
     ### SECTION PREDICTMODEL ####
-    data=pd.read_csv("flaskr\DataFake1_tree.csv")
+    data=pd.read_csv("flaskr\dataset\dueian.csv")
     data.head()
-    X = data.iloc[:, [ 1, 2, 3, 4]].values
-    y = data.iloc[:, 5].values
+    X = data.iloc[:, [ 0, 1, 2, 3]].values
+    y = data.iloc[:, 4].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=22)
     clf = MLPClassifier(hidden_layer_sizes=(100), 
                         max_iter=300,
@@ -210,18 +211,18 @@ def program():
     history = clf.fit(X_train,y_train)
     ypred = clf.predict(X_test)
 
-    def prediction(A, weather_desc, temp_city, B):
-        if weather_desc.find("rain"):
+    def prediction(Moisture, temp_city, hmdt, weather_desc):
+        if weather_desc.find("rain") == True:
             weather_desc = 1
         else:
             weather_desc = 0
-        inpredict = [[A,weather_desc,temp_city,B]]
+        inpredict = [[Moisture,temp_city, hmdt, weather_desc]]
         opredict = clf.predict(inpredict)
 
         return opredict
-    Moisture = random.randrange(50,100)
-    Light = random.randrange(0,100)
-    Status = prediction(Moisture, weather_desc, temp_city, Light)
+
+    Moisture = random.randrange(40,100)
+    Status = prediction(Moisture, temp_city, hmdt, weather_desc)
     if Status == 0:
         Status = "BAD"
     else:
@@ -232,4 +233,4 @@ def program():
                                   "weather":weather_desc, 
                                   "Status":Status,
                                   "Moisture":Moisture,
-                                  "Light":Light})
+                                  "humidity":hmdt})
