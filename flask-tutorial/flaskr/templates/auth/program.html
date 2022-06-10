@@ -29,10 +29,105 @@ body{
   background-size: cover;
 }
 
-form{
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 16px;
+}
+
+.container {
+  margin-top: 100px;
+  padding: 32px;
+}
+
+.select-box {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+.select-box .options-container {
+  background: #2f3640;
+  color: #f5f6fa;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
+}
+
+.selected {
+  background: #2f3640;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #f5f6fa;
+  position: relative;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #0d141f;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #414b57;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+
+forms{
     height: 80px;
-    width: 150px;
-    background-color: rgba(255,255,255,0.13);
     position: auto;
     top: 10%;
     left: 10%;
@@ -42,6 +137,18 @@ form{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
 }
+
+button{
+    margin-bottom: 5px;
+    width: 100%;
+    height: 50%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 0px 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
 form *{
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
@@ -56,15 +163,48 @@ form h3{
     text-align: center;
 }
 
-button{
-    margin-bottom: 5px;
+label{
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
     width: 100%;
-    height: 50%;
-    background-color: #ffffff;
-    color: #080710;
-    padding: 15px 0px;
+    background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
-    cursor: pointer;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #080710;
+
+}
+::placeholder{
+    color: #e5e5e5;
+}
+
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 215px;
+}
+.social i{
+  margin-right: 4px;
 }
 
 </style>
@@ -85,46 +225,56 @@ button{
   </header>
 
   <div class="w3-row-padding w3-margin-bottom w3-center">
-    <form class="w3-quarter">
+    <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>Moisture</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.Moisture}}</h5></div>
       </div>
-    </form>
-    <form class="w3-quarter">
+    </forms>
+    <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>Weather</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.weather}}</h5></div>
       </div>
-    </form>
-    <form class="w3-quarter">
+    </forms>
+    <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>Temperature</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.temp}}</h5></div>
       </div>
-    </form>
-    <form class="w3-quarter">
+    </forms>
+    <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>humidity</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.humidity}}</h5></div>
       </div>
-    </form>
+    </forms>
   </div>
   <div>
-    <div>
-      <div class="w3-center"><h3>Status : {{data.Status}}</h3></div>
-    </div>
-      <div class="w3-display-bottommiddle w3-text-white w3-padding-16 w3-round">
-        <div>
-          <div class="w3-rest w3-center">
-            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton1</button>
-            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton2</button>
-            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton3</button>
-            <button class="w3-half w3-button w3-block w3-white w3-opacity" >Botton4</button>
-            <button class="w3-auto w3-button w3-block w3-teal" >Start</button>
-            <button class="w3-auto w3-button w3-block w3-red" >Stop</button>
-        </div>
+      <div class="w3-center"><h4>Status : {{data.Status}}</h4></div>
+      <div class="w3-center"><h4>Model : {{data.selecttype}}</h4></div>
+  </div>
+  <div class="w3-display-bottommiddle">
+    <form name="program" id ="program" method="post">
+      <div class="select-box">
+          <select class="selected" id="pipeline" name="pipeline"  onchange="submitform();">
+                <div class="option">
+                  <option value="pipeline1">pipeline_1</option>
+                </div>
+                  <div class="option">
+                <option value="pipeline2">pipeline_2</option> 
+                </div>
+                <div class="option">
+                  <option value="pipeline3">pipeline_3</option> 
+                </div>
+                <div class="option">
+                  <option value="pipeline4">pipeline_4</option> 
+                </div>
+          </select>
+        <button><input type="submit" value="Apply"></button>
+        <button><input class="w3-red  "type="submit" value="Cancle"></button>
       </div>
+    </form>
   </div>
 
   <!-- Navbar (sit on top) -->
@@ -135,7 +285,6 @@ button{
     </a>
     <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i> Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
         <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
@@ -149,7 +298,6 @@ button{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Login</a>
@@ -189,6 +337,11 @@ button{
           x.className = x.className.replace(" w3-show", "");
       }
   }
+
+  function submitform()
+{
+  document.program.submit();
+}
   </script>
 
 </body>

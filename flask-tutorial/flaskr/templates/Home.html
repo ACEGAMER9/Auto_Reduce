@@ -20,6 +20,169 @@ body, html {
   outline: none;
   border: none; 
 }
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f6ff;
+}
+
+h2 {
+  margin: 16px;
+}
+
+.container {
+  margin-top: 100px;
+  padding: 32px;
+}
+
+.select-box {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+.select-box .options-container {
+  background: #2f3640;
+  color: #f5f6fa;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
+}
+
+.selected {
+  background: #2f3640;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #f5f6fa;
+  position: relative;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #0d141f;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #414b57;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #080710;
+
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 215px;
+}
+.social i{
+  margin-right: 4px;
+}
 
 /* Create a Parallax Effect */
 .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -61,7 +224,6 @@ body{
     
     <a href="#home" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i> Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
@@ -75,7 +237,6 @@ body{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Login</a>
@@ -85,15 +246,37 @@ body{
 </div>
 
 <!-- First Parallax Image with Logo Text -->  
-<div class="w3-display-middle">
-  <div>
-    <span class="w3-center w3-padding-large w3-white w3-xlarge w3-wide w3-animate-opacity">
-      <span class="w3-xlarge""></span>WELCOME TO</span><br>  
-      <span class="w3-large w3-animate-zoom"> >>>>AUTO REDUCE WATER</span> 
-      <span class="w3-small w3-animate-opacity"> PROJECT</span>
+{% if g.user %}
+<div class="w3-display-middle w3-center">
+  <form name="home" id ="home" method="post">
+          <h2>AUTO REDUCE WATER</h2>
+    
+          <div class="select-box">
+    
+            <select class="selected" id="selecttype" name="selecttype"  onchange="submitform();">
+            <div class="option">
+              <option value="durian">durian</option>
+            </div>
+              <div class="option">
+            <option value="mangosteen">mangosteen</option> 
+            </div>
+            <div class="option">
+              <option value="rambutan">rambutan</option> 
+            </div>
+            </select>
+            <button><input type="submit" value="Apply"></button>
+          </div>
+          </form>
+        </div>
+    </div>
     </div>
   </div>
 </div>
+{% else %}
+<div class="w3-display-middle w3-center">
+  <h2>AUTO REDUCE WATER</h2>
+</div>
+{% endif %}
 
 <!-- Modal for full size images on click-->
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
@@ -132,6 +315,11 @@ function toggleFunction() {
     } else {
         x.className = x.className.replace(" w3-show", "");
     }
+}
+
+function submitform()
+{
+  document.home.submit();
 }
 </script>
 </body>

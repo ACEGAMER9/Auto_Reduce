@@ -127,7 +127,6 @@ button{
     </a>
     <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i> Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
     {% else %}
@@ -140,7 +139,6 @@ button{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Program</a>
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Login</a>

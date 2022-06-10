@@ -1,6 +1,8 @@
 import functools
+from pickle import GLOBAL
 import sqlite3
 from re import A
+from threading import local
 import requests
 import pandas as pd
 import random #Import for Test#
@@ -14,10 +16,17 @@ from sklearn.neural_network import MLPClassifier
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-
 ########## HOME PAGE ROUTE ##########
-@bp.route("/")
+@bp.route("/", methods=('GET', 'POST'))
 def Home():
+    if request.method == 'POST':
+        selecttype = request.form['selecttype']
+        session['selecttype'] = selecttype
+        print(selecttype)
+
+        return redirect(url_for("auth.program", selecttype=selecttype))
+
+
     return render_template('Home.html')
 
 ########## REGISTER ROUTE ##########
@@ -174,6 +183,14 @@ def editprofile():
 
 @bp.route('/program', methods=('GET', 'POST'))
 def program():
+    selecttype = request.args['selecttype']  # counterpart for url_for()
+    selecttype = session['selecttype']       # counterpart for session
+### SECTION GET FOR MQTT ####
+    if request.method == 'POST':
+        pipeline = request.form['pipeline']
+        print(pipeline)
+
+### SECTION SELECT LOCATION WITH ZIPCODE ####
     db = get_db()
     user = db.execute('SELECT * FROM pfile WHERE p_id = ?;', (g.user['id'],)
         ).fetchone()
@@ -185,10 +202,11 @@ def program():
         row = cur.execute('SELECT * FROM pfile WHERE p_id = ?',(g.user['id'],)).fetchone()
         Zipcode = row[4] # ZIPCODE FOR SELECT LOCATION
     else :
-        Zipcode = "22000"
+        Zipcode = "22000" # DEFUALT LACATION
+
+### SECTION API WEATHER ####
     # https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key}
     user_api = "7b9a86d2006cc3e7c4c1c2d4bc38d743"
-    # Zipcode = "20000" # ZIPCODE FOR SELECT LOCATION
     complete_api_link = "https://api.openweathermap.org/data/2.5/weather?zip="+Zipcode+",th&appid="+user_api
     api_link = requests.get(complete_api_link)
     api_data = api_link.json()
@@ -197,17 +215,16 @@ def program():
     weather_desc = api_data['weather'][0]['description']
     ftemp_city ="{:.2f}".format(float(temp_city))
 
-    ### SECTION PREDICTMODEL ####
-    data=pd.read_csv("flaskr\dataset\dueian.csv")
-    data.head()
+### SECTION PREDICTMODEL ####
+    data=pd.read_csv("flaskr\dataset\{}.csv".format(selecttype))
     X = data.iloc[:, [ 0, 1, 2, 3]].values
     y = data.iloc[:, 4].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=22)
     clf = MLPClassifier(hidden_layer_sizes=(100), 
-                        max_iter=300,
-                        activation = 'logistic',
-                        solver='adam',
-                        random_state=1)
+                    max_iter=300,
+                    activation = 'logistic',
+                    solver='adam',
+                    random_state=1)
     history = clf.fit(X_train,y_train)
     ypred = clf.predict(X_test)
 
@@ -216,7 +233,7 @@ def program():
             weather_desc = 1
         else:
             weather_desc = 0
-        inpredict = [[Moisture,temp_city, hmdt, weather_desc]]
+        inpredict = [[Moisture, temp_city, hmdt, weather_desc]]
         opredict = clf.predict(inpredict)
 
         return opredict
@@ -233,4 +250,5 @@ def program():
                                   "weather":weather_desc, 
                                   "Status":Status,
                                   "Moisture":Moisture,
-                                  "humidity":hmdt})
+                                  "humidity":hmdt,
+                                  "selecttype":selecttype})
