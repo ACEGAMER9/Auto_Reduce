@@ -14,6 +14,9 @@ from flaskr.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+import time
+import paho.mqtt.client as mqtt
+
 ########## HOME PAGE ROUTE ##########
 @bp.route("/", methods=('GET', 'POST'))
 def Home():
@@ -184,8 +187,27 @@ def program():
     selecttype = request.args['selecttype']  # counterpart for url_for()
     selecttype = session['selecttype']       # counterpart for session
 ### SECTION GET FOR MQTT ####
+        # Callback Function on Connection with MQTT Server
+    def on_connect( client, userdata, flags, rc):
+        print ("Connected with Code :" +str(rc))
+        # Subscribe Topic from here
+        client.subscribe("/auto_redue/mqtt/status")
+
+    # Callback Function on Receiving the Subscribed Topic/Message
+    def on_message( client, userdata, msg):
+        # print the message received from the subscribed topic
+        print ( str(msg.payload) )
+        
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    client.connect("broker.hivemq.com", 1883, 60)
+
     if request.method == 'POST':
         pipeline = request.form['pipeline']
+        client.username_pw_set("", "")
+        client.publish("/auto_redue/mqtt/control/motor",pipeline)
         print(pipeline)
 
 ### SECTION SELECT LOCATION WITH ZIPCODE ####
