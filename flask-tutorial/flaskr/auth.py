@@ -13,8 +13,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
-
-
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 ########## HOME PAGE ROUTE ##########
 @bp.route("/", methods=('GET', 'POST'))

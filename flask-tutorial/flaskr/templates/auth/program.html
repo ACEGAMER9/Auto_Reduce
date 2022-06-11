@@ -258,21 +258,23 @@ input{
     <form name="program" id ="program" method="post">
       <div class="select-box">
           <select class="selected" id="pipeline" name="pipeline"  onchange="submitform();">
+              <div class="option">
+                <option value="None">Select_pipeline</option>
+              </div>
+              <div class="option">
+                <option value="1">pipeline_1</option>
+              </div>
                 <div class="option">
-                  <option value="pipeline1">pipeline_1</option>
-                </div>
-                  <div class="option">
-                <option value="pipeline2">pipeline_2</option> 
-                </div>
-                <div class="option">
-                  <option value="pipeline3">pipeline_3</option> 
-                </div>
-                <div class="option">
-                  <option value="pipeline4">pipeline_4</option> 
-                </div>
+              <option value="2">pipeline_2</option> 
+              </div>
+              <div class="option">
+                <option value="3">pipeline_3</option> 
+              </div>
+              <div class="option">
+                <option value="4">pipeline_4</option> 
+              </div>
           </select>
-        <button><input type="submit" value="Apply"></button>
-        <button><input class="w3-red  "type="submit" value="Cancle"></button>
+        <button><input class="w3-red "type="submit" value="Cancle"></button>
       </div>
     </form>
   </div>
@@ -341,6 +343,9 @@ input{
   function submitform()
 {
   document.program.submit();
+}
+  function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
 }
   </script>
 
