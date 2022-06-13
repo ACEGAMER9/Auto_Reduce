@@ -9,6 +9,7 @@ import random #Import for Test#
 from flask import (
 Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+from sklearn.pipeline import Pipeline
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
@@ -186,36 +187,6 @@ def editprofile():
 def program():
     selecttype = request.args['selecttype']  # counterpart for url_for()
     selecttype = session['selecttype']       # counterpart for session
-# ### SECTION GET FOR MQTT ####
-#         # Callback Function on Connection with MQTT Server
-#     def on_connect( client, userdata, flags, rc):
-#         print ("Connected with Code :" +str(rc))
-#         # Subscribe Topic from here
-#         client.subscribe("/auto_redue/mqtt/status")
-
-#     # Callback Function on Receiving the Subscribed Topic/Message
-#     def on_message( client, userdata, msg):
-#         # print the message received from the subscribed topic
-#         print ( str(msg.payload) )
-        
-#     client = mqtt.Client()
-#     client.on_connect = on_connect
-#     client.on_message = on_message
-
-#     client.connect("broker.hivemq.com", 1883, 60)
-
-#     if request.method == 'POST':
-#         pipeline = request.form['pipeline']
-#         client.username_pw_set("", "")
-#         if pipeline == "Auto":
-#             while pipeline == "Auto":
-#                 Status = prediction(Moisture, temp_city, hmdt, weather_desc)
-#                 client.publish("/auto_redue/mqtt/control/motor",Status)
-#                 print(pipeline)
-#                 time.sleep(100)
-#         else:
-#             client.publish("/auto_redue/mqtt/control/motor",pipeline)
-#         print(pipeline)
 
 ### SECTION SELECT LOCATION WITH ZIPCODE ####
     db = get_db()
@@ -290,31 +261,32 @@ def program():
 
     client.connect("broker.hivemq.com", 1883, 60)
 
+    global pipeline
     if request.method == 'POST':
         pipeline = request.form['pipeline']
         client.username_pw_set("", "")
-
-        while pipeline == "Auto":
-            def prediction(Moisture, temp_city, hmdt, weather_desc):
-                if weather_desc.find("rain") == True:
-                    weather_desc = 1
+        def run():
+            while pipeline == "Auto":
+                Moisture = random.randrange(40,60)
+                Status = prediction(Moisture, temp_city, hmdt, weather_desc)
+                if Status == 0:
+                    cStatus = "BAD"
+                    client.publish("/auto_redue/mqtt/control/motor",cStatus)
+                    print(cStatus)
+                    time.sleep(5)
+                    break
+                elif pipeline == "Cancle":
+                    break
                 else:
-                    weather_desc = 0
-                inpredict = [[Moisture, temp_city, hmdt, weather_desc]]
-                opredict = clf.predict(inpredict)
+                    cStatus = "GOOD"
+                    client.publish("/auto_redue/mqtt/control/motor",cStatus)
+                    print(cStatus)
+                    time.sleep(5)
+            else:
+                client.publish("/auto_redue/mqtt/control/motor",pipeline)
+                print(pipeline)
+        run()
 
-                return opredict
-
-            Moisture = random.randrange(40,100)
-            Status = prediction(Moisture, temp_city, hmdt, weather_desc)
-            if Status == 0:
-                Status = "BAD"
-                print(Status)
-            else :
-                Status = "GOOD"
-                client.publish("/auto_redue/mqtt/control/motor",Status)
-                print(Status)
-                time.sleep(5)
 
     return render_template('auth/program.html', 
                             data={"temp":ftemp_city, 
