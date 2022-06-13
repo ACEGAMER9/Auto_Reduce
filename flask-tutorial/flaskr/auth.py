@@ -186,29 +186,36 @@ def editprofile():
 def program():
     selecttype = request.args['selecttype']  # counterpart for url_for()
     selecttype = session['selecttype']       # counterpart for session
-### SECTION GET FOR MQTT ####
-        # Callback Function on Connection with MQTT Server
-    def on_connect( client, userdata, flags, rc):
-        print ("Connected with Code :" +str(rc))
-        # Subscribe Topic from here
-        client.subscribe("/auto_redue/mqtt/status")
+# ### SECTION GET FOR MQTT ####
+#         # Callback Function on Connection with MQTT Server
+#     def on_connect( client, userdata, flags, rc):
+#         print ("Connected with Code :" +str(rc))
+#         # Subscribe Topic from here
+#         client.subscribe("/auto_redue/mqtt/status")
 
-    # Callback Function on Receiving the Subscribed Topic/Message
-    def on_message( client, userdata, msg):
-        # print the message received from the subscribed topic
-        print ( str(msg.payload) )
+#     # Callback Function on Receiving the Subscribed Topic/Message
+#     def on_message( client, userdata, msg):
+#         # print the message received from the subscribed topic
+#         print ( str(msg.payload) )
         
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
+#     client = mqtt.Client()
+#     client.on_connect = on_connect
+#     client.on_message = on_message
 
-    client.connect("broker.hivemq.com", 1883, 60)
+#     client.connect("broker.hivemq.com", 1883, 60)
 
-    if request.method == 'POST':
-        pipeline = request.form['pipeline']
-        client.username_pw_set("", "")
-        client.publish("/auto_redue/mqtt/control/motor",pipeline)
-        print(pipeline)
+#     if request.method == 'POST':
+#         pipeline = request.form['pipeline']
+#         client.username_pw_set("", "")
+#         if pipeline == "Auto":
+#             while pipeline == "Auto":
+#                 Status = prediction(Moisture, temp_city, hmdt, weather_desc)
+#                 client.publish("/auto_redue/mqtt/control/motor",Status)
+#                 print(pipeline)
+#                 time.sleep(100)
+#         else:
+#             client.publish("/auto_redue/mqtt/control/motor",pipeline)
+#         print(pipeline)
 
 ### SECTION SELECT LOCATION WITH ZIPCODE ####
     db = get_db()
@@ -264,6 +271,50 @@ def program():
         Status = "BAD"
     else:
         Status = "GOOD"
+
+    ### SECTION GET FOR MQTT ####
+        # Callback Function on Connection with MQTT Server
+    def on_connect( client, userdata, flags, rc):
+        print ("Connected with Code :" +str(rc))
+        # Subscribe Topic from here
+        client.subscribe("/auto_redue/mqtt/status")
+
+    # Callback Function on Receiving the Subscribed Topic/Message
+    def on_message( client, userdata, msg):
+        # print the message received from the subscribed topic
+        print ( str(msg.payload) )
+        
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    client.connect("broker.hivemq.com", 1883, 60)
+
+    if request.method == 'POST':
+        pipeline = request.form['pipeline']
+        client.username_pw_set("", "")
+
+        while pipeline == "Auto":
+            def prediction(Moisture, temp_city, hmdt, weather_desc):
+                if weather_desc.find("rain") == True:
+                    weather_desc = 1
+                else:
+                    weather_desc = 0
+                inpredict = [[Moisture, temp_city, hmdt, weather_desc]]
+                opredict = clf.predict(inpredict)
+
+                return opredict
+
+            Moisture = random.randrange(40,100)
+            Status = prediction(Moisture, temp_city, hmdt, weather_desc)
+            if Status == 0:
+                Status = "BAD"
+                print(Status)
+            else :
+                Status = "GOOD"
+                client.publish("/auto_redue/mqtt/control/motor",Status)
+                print(Status)
+                time.sleep(5)
 
     return render_template('auth/program.html', 
                             data={"temp":ftemp_city, 

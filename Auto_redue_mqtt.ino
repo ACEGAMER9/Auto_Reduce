@@ -39,11 +39,18 @@ void doSubscribe(char* topic, byte* payload, unsigned int length){
        digitalWrite(4, HIGH);
        delay(1000); 
      }
-    else if(strState[i] == '0'){
+    else if(strState[i] == 'Cancle' || strState[i] == 'BAD'){
        digitalWrite(1, LOW);
        digitalWrite(2, LOW);
        digitalWrite(3, LOW);
        digitalWrite(4, LOW);
+       delay(1000);
+     }
+    else if(strState[i] == 'GOOD'){
+       digitalWrite(1, HIGH);
+       digitalWrite(2, HIGH);
+       digitalWrite(3, HIGH);
+       digitalWrite(4, HIGH);
        delay(1000);
      }
   }
