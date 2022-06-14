@@ -9,7 +9,6 @@ import random #Import for Test#
 from flask import (
 Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from sklearn.pipeline import Pipeline
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
@@ -187,6 +186,30 @@ def editprofile():
 def program():
     selecttype = request.args['selecttype']  # counterpart for url_for()
     selecttype = session['selecttype']       # counterpart for session
+### SECTION GET FOR MQTT ####
+        # Callback Function on Connection with MQTT Server
+    def on_connect( client, userdata, flags, rc):
+        print ("Connected with Code :" +str(rc))
+        # Subscribe Topic from here
+        client.subscribe("/auto_redue/mqtt/status")
+
+    # Callback Function on Receiving the Subscribed Topic/Message
+    def on_message( client, userdata, msg):
+        # print the message received from the subscribed topic
+        print ( str(msg.payload) )
+        
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    client.connect("broker.hivemq.com", 1883, 60)
+
+    if request.method == 'POST':
+        pipeline = request.form['pipeline']
+        client.username_pw_set("", "")
+        if pipeline != "9":
+            client.publish("/auto_redue/mqtt/control/motor",pipeline)
+        print("pipeline", pipeline)
 
 ### SECTION SELECT LOCATION WITH ZIPCODE ####
     db = get_db()
@@ -243,50 +266,26 @@ def program():
     else:
         Status = "GOOD"
 
-    ### SECTION GET FOR MQTT ####
-        # Callback Function on Connection with MQTT Server
-    def on_connect( client, userdata, flags, rc):
-        print ("Connected with Code :" +str(rc))
-        # Subscribe Topic from here
-        client.subscribe("/auto_redue/mqtt/status")
-
-    # Callback Function on Receiving the Subscribed Topic/Message
-    def on_message( client, userdata, msg):
-        # print the message received from the subscribed topic
-        print ( str(msg.payload) )
-        
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
-
-    client.connect("broker.hivemq.com", 1883, 60)
-
-    global pipeline
-    if request.method == 'POST':
-        pipeline = request.form['pipeline']
-        client.username_pw_set("", "")
-        def run():
-            while pipeline == "Auto":
-                Moisture = random.randrange(40,60)
-                Status = prediction(Moisture, temp_city, hmdt, weather_desc)
-                if Status == 0:
-                    cStatus = "BAD"
-                    client.publish("/auto_redue/mqtt/control/motor",cStatus)
-                    print(cStatus)
-                    time.sleep(5)
-                    break
-                elif pipeline == "Cancle":
-                    break
-                else:
-                    cStatus = "GOOD"
-                    client.publish("/auto_redue/mqtt/control/motor",cStatus)
-                    print(cStatus)
-                    time.sleep(5)
+    def looping(pipeline):
+        while pipeline =="9":
+            Moisture = random.randrange(40,100)
+            Status = prediction(Moisture, temp_city, hmdt, weather_desc)
+            if Status == 0:
+                cStatus = "0"
+                pipeline = "0"
+                client.publish("/auto_redue/mqtt/control/motor", cStatus)
+                print(">>>>>>", cStatus, "<<<<<<")
+                return pipeline
             else:
-                client.publish("/auto_redue/mqtt/control/motor",pipeline)
-                print(pipeline)
-        run()
+                cStatus = "9"
+                pipeline = "9"
+                client.publish("/auto_redue/mqtt/control/motor", cStatus)
+                print(cStatus)
+                time.sleep(1)
 
+    pipeline = looping(pipeline)
+    client.publish("/auto_redue/mqtt/control/motor", pipeline)
+    print("pipeline_return", pipeline)
 
     return render_template('auth/program.html', 
                             data={"temp":ftemp_city, 

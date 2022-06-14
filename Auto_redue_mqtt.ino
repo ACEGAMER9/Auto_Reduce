@@ -22,35 +22,39 @@ void doSubscribe(char* topic, byte* payload, unsigned int length){
   char strState[length];// declear array size of length.
   for(int i=0;i<length;i++){
     strState[i] = (char)payload[i];
-    Serial.print(strState[i]);
     if(strState[i] == '1'){
-       digitalWrite(1, HIGH);
+       Serial.print(strState[i]);
+       digitalWrite(D1, HIGH);
        delay(1000);  
      }
     else if(strState[i] == '2'){
-       digitalWrite(2, HIGH);
+       Serial.print(strState[i]);
+       digitalWrite(D2, HIGH);
        delay(1000);  
      }
     else if(strState[i] == '3'){
-       digitalWrite(3, HIGH);
+       Serial.print(strState[i]);
+       digitalWrite(D3, HIGH);
        delay(1000); 
      }
     else if(strState[i] == '4'){
-       digitalWrite(4, HIGH);
+       Serial.print(strState[i]);
+       digitalWrite(D4, HIGH);
        delay(1000); 
      }
-    else if(strState[i] == 'Cancle' || strState[i] == 'BAD'){
-       digitalWrite(1, LOW);
-       digitalWrite(2, LOW);
-       digitalWrite(3, LOW);
-       digitalWrite(4, LOW);
+    else if(strState[i] == '0'){
+       Serial.print(strState[i]);
+       digitalWrite(D1, LOW);
+       digitalWrite(D2, LOW);
+       digitalWrite(D3, LOW);
+       digitalWrite(D4, LOW);
        delay(1000);
      }
-    else if(strState[i] == 'GOOD'){
-       digitalWrite(1, HIGH);
-       digitalWrite(2, HIGH);
-       digitalWrite(3, HIGH);
-       digitalWrite(4, HIGH);
+    else if(strState[i] == '9'){
+       digitalWrite(D1, HIGH);
+       digitalWrite(D2, HIGH);
+       digitalWrite(D3, HIGH);
+       digitalWrite(D4, HIGH);
        delay(1000);
      }
   }
@@ -73,10 +77,10 @@ void reconnect(){
 
 
 void setup() {
-  pinMode(1, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
+  pinMode(D1, OUTPUT);
+  pinMode(D2, OUTPUT);
+  pinMode(D3, OUTPUT);
+  pinMode(D4, OUTPUT);
   
   // put your setup code here, to run once:
   Serial.begin(9600);
