@@ -29,10 +29,6 @@ body {
   background: #f7f6ff;
 }
 
-h2 {
-  margin: 16px;
-}
-
 .container {
   margin-top: 100px;
   padding: 32px;
@@ -155,11 +151,18 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
+a{
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+h2 {
+  margin: 16px;
+}
 button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 5px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 .social{
   margin-top: 30px;
@@ -194,7 +197,7 @@ button{
 
 /* First image (Logo. Full height) */
 body{
-  background-image: url(https://free4kwallpapers.com/uploads/originals/2019/11/15/minimal-mojave-wallpaper.jpg);
+  background-image: url(https://images.pexels.com/photos/2252308/pexels-photo-2252308.jpeg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -250,8 +253,7 @@ body{
 <div class="w3-display-middle w3-center">
   <form name="home" id ="home" method="post">
           <h2>SMART PLANT WATERING</h2>
-    
-          <div class="select-box">
+          <!-- <div class="select-box">
     
             <select class="selected" id="selecttype" name="selecttype"  onchange="submitform();">
             <div class="option">
@@ -265,8 +267,9 @@ body{
             </div>
             </select>
             <button><input type="submit" value="Apply"></button>
-          </div>
+          </div> -->
           </form>
+          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i>NEXT</a></button>
         </div>
     </div>
     </div>
@@ -317,10 +320,10 @@ function toggleFunction() {
     }
 }
 
-function submitform()
-{
-  document.home.submit();
-}
+// function submitform()
+// {
+//   document.home.submit();
+// }
 </script>
 </body>
 </html>
