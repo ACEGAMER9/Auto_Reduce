@@ -28,7 +28,7 @@ def create_app(test_config=None):
 
     @app.route("/")
     def Home():
-        return render_template('Home.html')
+        return render_template('auth/Home.html')
 
     from . import db
     db.init_app(app)

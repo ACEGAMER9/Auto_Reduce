@@ -155,6 +155,15 @@ a{
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #080710;
 }
 h2 {
   margin: 16px;
@@ -228,7 +237,6 @@ body{
     <a href="#home" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
@@ -268,8 +276,8 @@ body{
             </select>
             <button><input type="submit" value="Apply"></button>
           </div> -->
+          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-button">NEXT</a></button>
           </form>
-          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-bar-item w3-button w3-hide-small"></i>NEXT</a></button>
         </div>
     </div>
     </div>

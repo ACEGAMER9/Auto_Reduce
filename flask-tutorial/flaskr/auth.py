@@ -21,7 +21,7 @@ import paho.mqtt.client as mqtt
 @bp.route("/", methods=('GET', 'POST'))
 def Home():
 
-    return render_template('Home.html')
+    return render_template('auth/Home.html')
 
 ########## REGISTER ROUTE ##########
 @bp.route('/register', methods=('GET', 'POST'))
@@ -265,14 +265,17 @@ def program():
                 client.publish("/auto_redue/mqtt/control/motor", cStatus)
                 print(cStatus)
                 time.sleep(1)
+
     if request.method == 'POST':
         pipeline = request.form['pipeline']
         client.username_pw_set("", "")
         if pipeline != "9":
             client.publish("/auto_redue/mqtt/control/motor",pipeline)
+            print(pipeline)
         else:
             pipeline = looping(pipeline)
-        client.publish("/auto_redue/mqtt/control/motor", pipeline)
+            client.publish("/auto_redue/mqtt/control/motor", pipeline)
+            print(pipeline)
 
 
     return render_template('auth/program.html', 
