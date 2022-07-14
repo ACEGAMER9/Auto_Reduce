@@ -29,10 +29,6 @@ body {
   background: #f7f6ff;
 }
 
-h2 {
-  margin: 16px;
-}
-
 .container {
   margin-top: 100px;
   padding: 32px;
@@ -155,11 +151,27 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
+a{
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #080710;
+}
+h2 {
+  margin: 16px;
+}
 button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 5px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 .social{
   margin-top: 30px;
@@ -194,7 +206,7 @@ button{
 
 /* First image (Logo. Full height) */
 body{
-  background-image: url(https://free4kwallpapers.com/uploads/originals/2019/11/15/minimal-mojave-wallpaper.jpg);
+  background-image: url(https://images.pexels.com/photos/2252308/pexels-photo-2252308.jpeg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -225,7 +237,6 @@ body{
     <a href="#home" class="w3-bar-item w3-button">Home</a>
     {% if g.user %}
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
@@ -250,8 +261,7 @@ body{
 <div class="w3-display-middle w3-center">
   <form name="home" id ="home" method="post">
           <h2>SMART PLANT WATERING</h2>
-    
-          <div class="select-box">
+          <!-- <div class="select-box">
     
             <select class="selected" id="selecttype" name="selecttype"  onchange="submitform();">
             <div class="option">
@@ -265,7 +275,8 @@ body{
             </div>
             </select>
             <button><input type="submit" value="Apply"></button>
-          </div>
+          </div> -->
+          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-button">NEXT</a></button>
           </form>
         </div>
     </div>
@@ -317,10 +328,10 @@ function toggleFunction() {
     }
 }
 
-function submitform()
-{
-  document.home.submit();
-}
+// function submitform()
+// {
+//   document.home.submit();
+// }
 </script>
 </body>
 </html>

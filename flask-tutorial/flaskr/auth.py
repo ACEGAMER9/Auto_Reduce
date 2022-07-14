@@ -20,15 +20,8 @@ import paho.mqtt.client as mqtt
 ########## HOME PAGE ROUTE ##########
 @bp.route("/", methods=('GET', 'POST'))
 def Home():
-    if request.method == 'POST':
-        selecttype = request.form['selecttype']
-        session['selecttype'] = selecttype
-        print(selecttype)
 
-        return redirect(url_for("auth.program", selecttype=selecttype))
-
-
-    return render_template('Home.html')
+    return render_template('auth/Home.html')
 
 ########## REGISTER ROUTE ##########
 @bp.route('/register', methods=('GET', 'POST'))
@@ -181,11 +174,21 @@ def editprofile():
     return render_template('auth/editprofile.html')
 
 ########## PROGRAM ROUTE ##########
+### SECTION PREDICTMODEL ####
+data=pd.read_csv("flaskr\dataset\data_rambutan.csv")
+X = data.iloc[:, [ 0, 1, 2, 3]].values
+y = data.iloc[:, 4].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=22)
+clf = MLPClassifier(hidden_layer_sizes=(100), 
+                max_iter=300,
+                activation = 'logistic',
+                solver='adam',
+                random_state=1)
+history = clf.fit(X_train,y_train)
+ypred = clf.predict(X_test)
 
 @bp.route('/program', methods=('GET', 'POST'))
 def program():
-    selecttype = request.args['selecttype']  # counterpart for url_for()
-    selecttype = session['selecttype']       # counterpart for session
 ### SECTION GET FOR MQTT ####
         # Callback Function on Connection with MQTT Server
     def on_connect( client, userdata, flags, rc):
@@ -203,13 +206,6 @@ def program():
     client.on_message = on_message
 
     client.connect("broker.hivemq.com", 1883, 60)
-
-    if request.method == 'POST':
-        pipeline = request.form['pipeline']
-        client.username_pw_set("", "")
-        if pipeline != "9":
-            client.publish("/auto_redue/mqtt/control/motor",pipeline)
-        print("pipeline", pipeline)
 
 ### SECTION SELECT LOCATION WITH ZIPCODE ####
     db = get_db()
@@ -235,19 +231,6 @@ def program():
     hmdt = api_data['main']['humidity']
     weather_desc = api_data['weather'][0]['description']
     ftemp_city ="{:.2f}".format(float(temp_city))
-
-### SECTION PREDICTMODEL ####
-    data=pd.read_csv("flaskr\dataset\{}.csv".format(selecttype))
-    X = data.iloc[:, [ 0, 1, 2, 3]].values
-    y = data.iloc[:, 4].values
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=22)
-    clf = MLPClassifier(hidden_layer_sizes=(100), 
-                    max_iter=300,
-                    activation = 'logistic',
-                    solver='adam',
-                    random_state=1)
-    history = clf.fit(X_train,y_train)
-    ypred = clf.predict(X_test)
 
     def prediction(Moisture, temp_city, hmdt, weather_desc):
         if weather_desc.find("rain") == True:
@@ -283,14 +266,21 @@ def program():
                 print(cStatus)
                 time.sleep(1)
 
-    pipeline = looping(pipeline)
-    client.publish("/auto_redue/mqtt/control/motor", pipeline)
-    print("pipeline_return", pipeline)
+    if request.method == 'POST':
+        pipeline = request.form['pipeline']
+        client.username_pw_set("", "")
+        if pipeline != "9":
+            client.publish("/auto_redue/mqtt/control/motor",pipeline)
+            print(pipeline)
+        else:
+            pipeline = looping(pipeline)
+            client.publish("/auto_redue/mqtt/control/motor", pipeline)
+            print(pipeline)
+
 
     return render_template('auth/program.html', 
                             data={"temp":ftemp_city, 
                                   "weather":weather_desc, 
                                   "Status":Status,
                                   "Moisture":Moisture,
-                                  "humidity":hmdt,
-                                  "selecttype":selecttype})
+                                  "humidity":hmdt})
