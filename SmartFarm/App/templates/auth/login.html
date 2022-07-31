@@ -6,6 +6,7 @@
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <style media="screen">
@@ -52,7 +53,7 @@ form{
     padding: 50px 35px;
 }
 form *{
-    font-family: 'Poppins',sans-serif;
+    font-family: "Poppins","Prompt", sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
@@ -94,7 +95,10 @@ button{
 }
 .social{
   margin-top: 30px;
-  display: flex;
+  /* margin-right: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  display: flex; */
 }
 .social div{
   background: red;
@@ -109,7 +113,9 @@ button{
   background-color: rgba(255,255,255,0.47);
 }
 .social .fb{
-  margin-left: 215px;
+  margin-left: 187px;
+  /* font-size: 13px;
+  font-weight: 400; */
 }
 .social i{
   margin-right: 4px;
@@ -124,18 +130,18 @@ button{
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>Login</h3>
+        <h3>ล็อกอิน</h3>
 
-        <label for="username">Username</label>
-        <input name="username" id="username" required placeholder="Email or Phone">
+        <label for="username">ชื่อผู้ใช้</label>
+        <input name="username" id="username" required placeholder="อีเมล์ หรือ เบอร์โทรศัพท์">
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required placeholder="Password">
+        <label for="password">รหัสผ่าน</label>
+        <input type="password" name="password" id="password" required placeholder="รหัสผ่าน">
 
-        <button><input type="submit" value="Login"></button>
+        <button><input type="submit" value="ล็อกอิน"></button>
         <div class="social">
-          <a href="register" class="go"></i>SignUp</a>
-          <a href="{{ url_for('auth.Home') }}" class="fb">Home</a>
+          <a href="register" class="go"></i>ลงทะเบียน</a>
+          <a href="{{ url_for('auth.Home') }}" class="fb">หน้าแรก</a>
         </div>
     </form>
 </body>

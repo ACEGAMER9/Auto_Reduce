@@ -6,15 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
 
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+html,body,h1,h2,h3,h4,h5 {font-family: "Poppins","Prompt", sans-serif}
 body, html {
   height: 100%;
   line-height: 1.8;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Poppins',"Prompt",sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
@@ -155,7 +156,7 @@ button{
 }
 
 form *{
-    font-family: 'Poppins',sans-serif;
+    font-family: "Poppins","Prompt", sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
@@ -226,68 +227,68 @@ input{
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:30px">
-    <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> แผงควบคุม</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom w3-center">
     <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
-        <div class="w3-auto w3-left w3-opacity-off"><h5>Moisture</h5></div>
+        <div class="w3-auto w3-left w3-opacity-off"><h5>ความชื้นดิน</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.Moisture}}</h5></div>
       </div>
     </forms>
     <forms class="w3-quarter w3-white">
       <div class="w3-container w3-opacity-min">
-        <div class="w3-auto w3-left w3-opacity-off"><h5>Weather</h5></div>
+        <div class="w3-auto w3-left w3-opacity-off"><h5>สภาพอากาศ</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.weather}}</h5></div>
       </div>
     </forms>
     <forms class="w3-quarter">
       <div class="w3-container w3-opacity-min">
-        <div class="w3-auto w3-left w3-opacity-off"><h5>Temperature</h5></div>
+        <div class="w3-auto w3-left w3-opacity-off"><h5>อุณหภูมิ</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.temp}}</h5></div>
       </div>
     </forms>
     <forms class="w3-quarter w3-white">
       <div class="w3-container w3-opacity-min">
-        <div class="w3-auto w3-left w3-opacity-off"><h5>Humidity</h5></div>
+        <div class="w3-auto w3-left w3-opacity-off"><h5>ความชื้นอากาศ</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.humidity}}</h5></div>
       </div>
     </forms>
   </div>
   <div>
       <div id="txt" class="w3-center"></div><p> <span id="datetime"></span></p>
-      <div class="w3-center"><h4>Status : {{data.Status}}</h4></div>
+      <div class="w3-center"><h4>สถานะ : {{data.Status}}</h4></div>
   </div>
   <div class="w3-display-bottommiddle">
     <form name="program" id ="program" method="post">
       <div class="select-box">
           <select class="selected" id="pipeline" name="pipeline"  onchange="submitform();">
               <div class="option">
-                <option value="None">Select pipeline</option>
+                <option value="None">กรุณาเลือกช่องทางการให้น้ำ</option>
               </div>
               <div class="option">
-                <option value="1">pipeline 1</option>
+                <option value="1">ทางน้ำที่ 1</option>
               </div>
                 <div class="option">
-              <option value="2">pipeline 2</option> 
+              <option value="2">ทางน้ำที่ 2</option> 
               </div>
               <div class="option">
-                <option value="3">pipeline 3</option> 
+                <option value="3">ทางน้ำที่ 3</option> 
               </div>
               <div class="option">
-                <option value="4">pipeline 4</option> 
+                <option value="4">ทางน้ำที่ 4</option> 
               </div>
               <div class="option">
-                <option value="9">Auto</option> 
+                <option value="9">โหมดอัตโนมัติ</option> 
               </div>
-              <button><input class="w3-white" type="submit" value="Apply"></button>
+              <button><input class="w3-white" type="submit" value="ยืนยัน"></button>
           </select>
       </div>
     </form>
     <form name="program" id ="program" method="post">
       <input value="0" type="hidden" id="pipeline" name="pipeline" onchange="submitbotton();">
-      <button><input class="w3-red" type="submit" value="Cancle"></button>
+      <button><input class="w3-red" type="submit" value="ยกเลิก"></button>
     </form>
   </div>
 
@@ -297,14 +298,14 @@ input{
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-    <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">Home</a>
+    <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">หน้าแรก</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกเอาท์</a>
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
         <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
-      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> SignUp</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกอิน</a>
+      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงทะเบียน</a>
     {% endif %}
     </a>
   </div>
@@ -312,10 +313,10 @@ input{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกเอาท์</a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Login</a>
-      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">SignUp</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกอิน</a>
+      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงทะเบียน</a>
     {% endif %}
   </div>
 </div>

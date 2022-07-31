@@ -6,6 +6,7 @@
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <style media="screen">
@@ -53,7 +54,7 @@ form{
     padding: 50px 35px;
 }
 form *{
-    font-family: 'Poppins',sans-serif;
+    font-family: "Poppins","Prompt", sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
@@ -126,20 +127,20 @@ button{
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>Edit Profile</h3>
+        <h3>แก้ไขข้อมูลบุคล</h3>
 
-        <label for="fullname">Fullname</label>
-        <input name="fullname" id="fullname" required placeholder="Enter Name and Surname">
+        <label for="fullname">ชื่อและนามสกุล</label>
+        <input name="fullname" id="fullname" required placeholder="กรอก ชื่อและนามสกุล">
 
-        <label for="adress">Address</Address></label>
-        <input name="adress" id="adress" required placeholder="Enter Address">
+        <label for="adress">รายละเอียดที่อยู่</Address></label>
+        <input name="adress" id="adress" required placeholder="กรอก รายละเอียดที่อยู่">
 
-        <label for="zipcode">Zipcode</Address></label>
-        <input name="zipcode" id="zipcode" required placeholder="Enter Zipcode">
+        <label for="zipcode">รหัสไปรษณีย์</Address></label>
+        <input name="zipcode" id="zipcode" required placeholder="กรอก รหัสไปรษณีย์">
 
-        <button><input type="submit" value="Submit"></button>
+        <button><input type="submit" value="ยืนยัน"></button>
         <div class="social">
-          <a href="{{ url_for('auth.Home') }}" class="Hm">Home</a>
+          <a href="{{ url_for('auth.Home') }}" class="Hm">หน้าแรก</a>
         </div>
     </form>
 </body>

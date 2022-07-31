@@ -132,7 +132,7 @@ def profile():
         zipcode = row[4]
     else:
         fullname = "----------------------"
-        adress  = "PLESE EDIT YOUR PROFILE"
+        adress  = "โปรดกรอกข้อมูลส่วนบุคคล"
         zipcode = "----------------------"
 
     return render_template('auth/profile.html', 
@@ -245,9 +245,9 @@ def program():
     Moisture = random.randrange(40,100)
     Status = prediction(Moisture, temp_city, hmdt, weather_desc)
     if Status == 0:
-        Status = "BAD"
+        Status = "ไม่เหมาะสมกับการรดน้ำ"
     else:
-        Status = "GOOD"
+        Status = "เหมาะสมกับการรดน้ำ"
 
     def looping(pipeline):
         while pipeline =="9":

@@ -7,14 +7,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Poppins", sans-serif;}
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Poppins","Prompt", sans-serif;}
 body, html {
   height: 100%;
   line-height: 1.8;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins","Prompt", sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
@@ -110,11 +111,13 @@ body, html {
 } */
 
 form *{
-    font-family: 'Poppins',sans-serif;
+  font-family: "Poppins","Prompt", sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
+    font-size: 32px;
+    font-weight: 500;
 }
 form h3{
     font-size: 32px;
@@ -226,13 +229,13 @@ body{
       <i class="fa fa-bars"></i>
     </a>
     
-    <a href="#home" class="w3-bar-item w3-button">Home</a>
+    <a href="#home" class="w3-bar-item w3-button">หน้าแรก</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> Logout</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกเอาท์</a>
       <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> Login</a>
-      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> SignUp</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกอิน</a>
+      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงทะเบียน</a>
     {% endif %}
     </a>
   </div>
@@ -240,10 +243,10 @@ body{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Logout</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกเอาท์</a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">Login</a>
-      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">SignUp</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกอิน</a>
+      <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงทะเบียน</a>
     {% endif %}
   </div>
 </div>
@@ -268,7 +271,7 @@ body{
             </select>
             <button><input type="submit" value="Apply"></button>
           </div> -->
-          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-button">NEXT</a></button>
+          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-button">เริ่มต้น</a></button>
           </form>
         </div>
     </div>
