@@ -22,7 +22,8 @@ body, html {
 }
 
 body{
-  background-image: url(https://images.pexels.com/photos/216662/pexels-photo-216662.jpeg);
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280419.jpg?w=1380&t=st=1659248224~exp=1659248824~hmac=a57fa4db2ec492fbb389156e1e52192202902574ac01cbeb9de56d6dcdf024ba);
+  /* https://images.pexels.com/photos/216662/pexels-photo-216662.jpeg */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -213,7 +214,7 @@ input{
 
 </style>
 </head>
-<body class="w3-animate-opacity">
+<body class="w3-animate-opacity" onload="startTime()">
   <div class="w3-container">
 </div>
 
@@ -235,7 +236,7 @@ input{
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.Moisture}}</h5></div>
       </div>
     </forms>
-    <forms class="w3-quarter">
+    <forms class="w3-quarter w3-white">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>Weather</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.weather}}</h5></div>
@@ -247,7 +248,7 @@ input{
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.temp}}</h5></div>
       </div>
     </forms>
-    <forms class="w3-quarter">
+    <forms class="w3-quarter w3-white">
       <div class="w3-container w3-opacity-min">
         <div class="w3-auto w3-left w3-opacity-off"><h5>Humidity</h5></div>
         <div class="w3-auto w3-right w3-opacity-off"><h5>{{data.humidity}}</h5></div>
@@ -255,6 +256,7 @@ input{
     </forms>
   </div>
   <div>
+      <div id="txt" class="w3-center"></div><p> <span id="datetime"></span></p>
       <div class="w3-center"><h4>Status : {{data.Status}}</h4></div>
   </div>
   <div class="w3-display-bottommiddle">
@@ -321,6 +323,22 @@ input{
 </div>
 
 <script>
+  // time show
+  function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+    setTimeout(startTime, 1000);
+  }
+
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
   // Modal Image Gallery
   function onClick(element) {
     document.getElementById("img01").src = element.src;
