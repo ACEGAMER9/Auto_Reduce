@@ -10,7 +10,7 @@ from flask import (
 Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from flaskr.db import get_db, get_db2
+from App.db import get_db, get_db2
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -175,7 +175,7 @@ def editprofile():
 
 ########## PROGRAM ROUTE ##########
 ### SECTION PREDICTMODEL ####
-data=pd.read_csv("flaskr\dataset\data_rambutan.csv")
+data=pd.read_csv("App\dataset\data_rambutan.csv")
 X = data.iloc[:, [ 0, 1, 2, 3]].values
 y = data.iloc[:, 4].values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=22)

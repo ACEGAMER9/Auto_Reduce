@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Register Page</title>
+    <title>Login Page</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 body{
-  background-image: url(https://images.pexels.com/photos/40896/larch-conifer-cone-branch-tree-40896.jpeg);
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280416.jpg?w=1380&t=st=1659248195~exp=1659248795~hmac=f9428e634025507d8795d0ba96d85bfd71095db2baa40b27c1cd28abcda0b1cd);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,7 +58,6 @@ form *{
     outline: none;
     border: none;
 }
-
 form h3{
     font-size: 32px;
     font-weight: 500;
@@ -82,7 +81,7 @@ input{
     font-size: 18px;
     font-weight: 600;
     color: #080710;
-    cursor: pointer;
+
 }
 ::placeholder{
     color: #e5e5e5;
@@ -110,11 +109,12 @@ button{
   background-color: rgba(255,255,255,0.47);
 }
 .social .fb{
-  margin-left: 233px;
+  margin-left: 215px;
 }
 .social i{
   margin-right: 4px;
 }
+
 
     </style>
 </head>
@@ -124,7 +124,7 @@ button{
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>SignUp</h3>
+        <h3>Login</h3>
 
         <label for="username">Username</label>
         <input name="username" id="username" required placeholder="Email or Phone">
@@ -132,10 +132,9 @@ button{
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required placeholder="Password">
 
-        <button><input type="submit" value="SignUp"></button> 
-
+        <button><input type="submit" value="Login"></button>
         <div class="social">
-          <a href="login" class="go"></i>login</a>
+          <a href="register" class="go"></i>SignUp</a>
           <a href="{{ url_for('auth.Home') }}" class="fb">Home</a>
         </div>
     </form>

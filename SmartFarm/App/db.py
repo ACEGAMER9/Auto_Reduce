@@ -16,7 +16,7 @@ def get_db():
     return g.db
 
 def get_db2():
-    database = r"..\flask-tutorial\instance\flaskr.sqlite"
+    database = r"..\SmartFarm\instance\App.sqlite"
 
     return database
 

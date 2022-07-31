@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Poppins", sans-serif;}
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Poppins", sans-serif;}
 body, html {
   height: 100%;
   line-height: 1.8;
@@ -20,26 +20,18 @@ body, html {
   outline: none;
   border: none; 
 }
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
 
-body {
-  background: #f7f6ff;
-}
-
-.container {
+/* .container {
   margin-top: 100px;
   padding: 32px;
-}
+} */
 
-.select-box {
+/* .select-box {
   display: flex;
   width: 400px;
   flex-direction: column;
-}
-
+} */
+/* 
 .select-box .options-container {
   background: #2f3640;
   color: #f5f6fa;
@@ -115,7 +107,7 @@ body {
 
 .select-box .option .radio {
   display: none;
-}
+} */
 
 form *{
     font-family: 'Poppins',sans-serif;
@@ -161,8 +153,8 @@ a{
   background-color: rgba(255,255,255,0.07);
   border-radius: 3px;
   padding: 0 10px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: #080710;
 }
 h2 {
@@ -206,7 +198,7 @@ button{
 
 /* First image (Logo. Full height) */
 body{
-  background-image: url(https://images.pexels.com/photos/2252308/pexels-photo-2252308.jpeg);
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280420.jpg?w=1380&t=st=1659248320~exp=1659248920~hmac=a3f90eef0fe5b7ba814c7af29489c3a6c6f73a8008718f1c131f989342347827);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -260,7 +252,7 @@ body{
 {% if g.user %}
 <div class="w3-display-middle w3-center">
   <form name="home" id ="home" method="post">
-          <h2>SMART PLANT WATERING</h2>
+          <h2>SMART FARMING</h2>
           <!-- <div class="select-box">
     
             <select class="selected" id="selecttype" name="selecttype"  onchange="submitform();">
@@ -285,7 +277,7 @@ body{
 </div>
 {% else %}
 <div class="w3-display-middle w3-center">
-  <h2>SMART PLANT WATERING</h2>
+  <h2>SMART FARMING</h2>
 </div>
 {% endif %}
 

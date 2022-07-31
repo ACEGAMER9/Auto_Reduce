@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Login Page</title>
+    <title>Editprofile Page</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 body{
-  background-image: url(https://images.pexels.com/photos/40896/larch-conifer-cone-branch-tree-40896.jpeg);
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280420.jpg?w=900&t=st=1659248500~exp=1659249100~hmac=156f66f4f389ed949e4282cef86c93b3b47fcfb571ab2ca20cc0244ba18547e5);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,8 +37,9 @@ body{
     position: absolute;
     border-radius: 50%;
 }
+
 form{
-    height: 520px;
+    height: 600px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -108,8 +109,8 @@ button{
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 }
-.social .fb{
-  margin-left: 215px;
+.social .Hm{
+  margin: auto;
 }
 .social i{
   margin-right: 4px;
@@ -118,24 +119,27 @@ button{
 
     </style>
 </head>
+
 <body>
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>Login</h3>
+        <h3>Edit Profile</h3>
 
-        <label for="username">Username</label>
-        <input name="username" id="username" required placeholder="Email or Phone">
+        <label for="fullname">Fullname</label>
+        <input name="fullname" id="fullname" required placeholder="Enter Name and Surname">
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required placeholder="Password">
+        <label for="adress">Address</Address></label>
+        <input name="adress" id="adress" required placeholder="Enter Address">
 
-        <button><input type="submit" value="Login"></button>
+        <label for="zipcode">Zipcode</Address></label>
+        <input name="zipcode" id="zipcode" required placeholder="Enter Zipcode">
+
+        <button><input type="submit" value="Submit"></button>
         <div class="social">
-          <a href="register" class="go"></i>SignUp</a>
-          <a href="{{ url_for('auth.Home') }}" class="fb">Home</a>
+          <a href="{{ url_for('auth.Home') }}" class="Hm">Home</a>
         </div>
     </form>
 </body>

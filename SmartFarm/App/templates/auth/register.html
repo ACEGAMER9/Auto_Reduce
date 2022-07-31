@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Editprofile Page</title>
+    <title>Register Page</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 body{
-  background-image: url(https://images.pexels.com/photos/4515743/pexels-photo-4515743.jpeg);
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280420.jpg?w=1380&t=st=1659248320~exp=1659248920~hmac=a3f90eef0fe5b7ba814c7af29489c3a6c6f73a8008718f1c131f989342347827);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,9 +37,8 @@ body{
     position: absolute;
     border-radius: 50%;
 }
-
 form{
-    height: 600px;
+    height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -59,6 +58,7 @@ form *{
     outline: none;
     border: none;
 }
+
 form h3{
     font-size: 32px;
     font-weight: 500;
@@ -82,7 +82,7 @@ input{
     font-size: 18px;
     font-weight: 600;
     color: #080710;
-
+    cursor: pointer;
 }
 ::placeholder{
     color: #e5e5e5;
@@ -109,37 +109,34 @@ button{
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 }
-.social .Hm{
-  margin: auto;
+.social .fb{
+  margin-left: 233px;
 }
 .social i{
   margin-right: 4px;
 }
 
-
     </style>
 </head>
-
 <body>
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>Edit Profile</h3>
+        <h3>SignUp</h3>
 
-        <label for="fullname">Fullname</label>
-        <input name="fullname" id="fullname" required placeholder="Enter Name and Surname">
+        <label for="username">Username</label>
+        <input name="username" id="username" required placeholder="Email or Phone">
 
-        <label for="adress">Address</Address></label>
-        <input name="adress" id="adress" required placeholder="Enter Address">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required placeholder="Password">
 
-        <label for="zipcode">Zipcode</Address></label>
-        <input name="zipcode" id="zipcode" required placeholder="Enter Zipcode">
+        <button><input type="submit" value="SignUp"></button> 
 
-        <button><input type="submit" value="Submit"></button>
         <div class="social">
-          <a href="{{ url_for('auth.Home') }}" class="Hm">Home</a>
+          <a href="login" class="go"></i>login</a>
+          <a href="{{ url_for('auth.Home') }}" class="fb">Home</a>
         </div>
     </form>
 </body>
