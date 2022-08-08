@@ -271,10 +271,28 @@ def program():
         client.username_pw_set("", "")
         if pipeline != "9":
             client.publish("/auto_redue/mqtt/control/motor",pipeline)
+
+            user_id = session.get('user_id')
+            if user_id is not None:
+
+                db.execute(
+                    "INSERT INTO datatrain (d_id, moisture, temperature, humidity, weather, watering) VALUES (?, ?, ?, ?, ?, ?)",
+                    (g.user['id'], Moisture, temp_city, hmdt, weather_desc, 1),
+                )
+                db.commit()
+
             print(pipeline)
         else:
             pipeline = looping(pipeline)
             client.publish("/auto_redue/mqtt/control/motor", pipeline)
+
+            if user_id is not None:
+                db.execute(
+                    "INSERT INTO datatrain (d_id, moisture, temperature, humidity, weather, watering) VALUES (?, ?, ?, ?, ?, ?)",
+                    (g.user['id'], Moisture, temp_city, hmdt, weather_desc, 1),
+                )
+                db.commit()
+
             print(pipeline)
 
 

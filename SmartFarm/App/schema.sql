@@ -20,8 +20,9 @@ CREATE TABLE datatrain (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   d_id INTEGER NOT NULL,
   moisture INTEGER NOT NULL,
-  weather TEXT NOT NULL,
   temperature TEXT NOT NULL,
   humidity TEXT NOT NULL,
+  weather TEXT NOT NULL,
+  watering TEXT NOT NULL,
   FOREIGN KEY (d_id) REFERENCES user (p_id)
 );
