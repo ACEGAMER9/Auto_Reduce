@@ -18,8 +18,6 @@ from sklearn.neural_network import MLPClassifier
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 ########## HOME PAGE ROUTE ##########
-
-
 @bp.route("/", methods=('GET', 'POST'))
 def Home():
 
@@ -186,7 +184,7 @@ def editprofile():
 
 ########## PROGRAM ROUTE ##########
 ### SECTION PREDICTMODEL ####
-data = pd.read_csv("App\dataset\data_rambutan.csv")
+data = pd.read_csv("App/dataset/data_rambutan.csv")
 X = data.iloc[:, [0, 1, 2, 3]].values
 y = data.iloc[:, 4].values
 X_train, X_test, y_train, y_test = train_test_split(
