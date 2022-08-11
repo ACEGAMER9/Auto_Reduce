@@ -25,7 +25,6 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-
     @app.route("/")
     def Home():
         return render_template('auth/Home.html')
