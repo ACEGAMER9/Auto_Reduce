@@ -23,12 +23,7 @@ body, html {
 }
 
 body{
-  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280419.jpg?w=1380&t=st=1659248224~exp=1659248824~hmac=a57fa4db2ec492fbb389156e1e52192202902574ac01cbeb9de56d6dcdf024ba);
-  /* https://images.pexels.com/photos/216662/pexels-photo-216662.jpeg */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #333333;
 }
 
 * {
@@ -40,6 +35,17 @@ a{
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
+  display: block;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  font-family: "Poppins","Prompt", sans-serif;
+  color: #4CAF50;
+  font-size: 0.8em;
+  text-decoration: none;
+  float: right;
 }
 
 h2 {
@@ -301,7 +307,6 @@ input{
     <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">หน้าแรก</a>
     {% if g.user %}
       <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกเอาท์</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
         <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
       <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกอิน</a>

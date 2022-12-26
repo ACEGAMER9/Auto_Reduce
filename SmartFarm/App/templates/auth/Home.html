@@ -22,102 +22,12 @@ body, html {
   border: none; 
 }
 
-/* .container {
-  margin-top: 100px;
-  padding: 32px;
-} */
-
-/* .select-box {
-  display: flex;
-  width: 400px;
-  flex-direction: column;
-} */
-/* 
-.select-box .options-container {
-  background: #2f3640;
-  color: #f5f6fa;
-  max-height: 0;
-  width: 100%;
-  opacity: 0;
-  transition: all 0.4s;
-  border-radius: 8px;
-  overflow: hidden;
-
-  order: 1;
-}
-
-.selected {
-  background: #2f3640;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  color: #f5f6fa;
-  position: relative;
-
-  order: 0;
-}
-
-.selected::after {
-  content: "";
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  position: absolute;
-  height: 100%;
-  width: 32px;
-  right: 10px;
-  top: 5px;
-
-  transition: all 0.4s;
-}
-
-.select-box .options-container.active {
-  max-height: 240px;
-  opacity: 1;
-  overflow-y: scroll;
-}
-
-.select-box .options-container.active + .selected::after {
-  transform: rotateX(180deg);
-  top: -6px;
-}
-
-.select-box .options-container::-webkit-scrollbar {
-  width: 8px;
-  background: #0d141f;
-  border-radius: 0 8px 8px 0;
-}
-
-.select-box .options-container::-webkit-scrollbar-thumb {
-  background: #525861;
-  border-radius: 0 8px 8px 0;
-}
-
-.select-box .option,
-.selected {
-  padding: 12px 24px;
-  cursor: pointer;
-}
-
-.select-box .option:hover {
-  background: #414b57;
-}
-
-.select-box label {
-  cursor: pointer;
-}
-
-.select-box .option .radio {
-  display: none;
-} */
-
 form *{
   font-family: "Poppins","Prompt", sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
-    font-size: 32px;
-    font-weight: 500;
 }
 form h3{
     font-size: 32px;
@@ -151,14 +61,16 @@ a{
   background-color: #ffffff;
   border-radius: 5px;
   display: block;
-  height: 50px;
+  height: 40px;
   width: 100%;
   background-color: rgba(255,255,255,0.07);
   border-radius: 3px;
   padding: 0 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #080710;
+  font-family: "Poppins","Prompt", sans-serif;
+  color: #4CAF50;
+  font-size: 0.8em;
+  text-decoration: none;
+  float: right;
 }
 h2 {
   margin: 16px;
@@ -166,6 +78,9 @@ h2 {
 button{
   width: 100%;
   background-color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4CAF50;
   border-radius: 5px;
 }
 .social{
@@ -201,11 +116,7 @@ button{
 
 /* First image (Logo. Full height) */
 body{
-  /* background-image: url(); */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #333333;
 }
 
 .w3-wide {letter-spacing: 10px;}
@@ -256,22 +167,7 @@ body{
 <div class="w3-display-middle w3-center">
   <form name="home" id ="home" method="post">
           <h2>SMART FARMING</h2>
-          <!-- <div class="select-box">
-    
-            <select class="selected" id="selecttype" name="selecttype"  onchange="submitform();">
-            <div class="option">
-              <option value="durian">durian</option>
-            </div>
-              <div class="option">
-            <option value="mangosteen">mangosteen</option> 
-            </div>
-            <div class="option">
-              <option value="rambutan">rambutan</option> 
-            </div>
-            </select>
-            <button><input type="submit" value="Apply"></button>
-          </div> -->
-          <button class="w3-red"><a href="{{ url_for('auth.program') }}" class="w3-button">เริ่มต้น</a></button>
+          <button><a href="{{ url_for('auth.program') }}" class="w3-button">เริ่มต้น</a></button>
           </form>
         </div>
     </div>
@@ -322,11 +218,6 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
-
-// function submitform()
-// {
-//   document.home.submit();
-// }
 </script>
 </body>
 </html>

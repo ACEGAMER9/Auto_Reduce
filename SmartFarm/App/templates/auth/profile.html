@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Profile Page</title>
+<title>Profile</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,8 +11,7 @@
 <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
 
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Poppins","Prompt", sans-serif}
-body, html {
+html,body,h1,h2,h4,h5,body, html {
   height: 100%;
   line-height: 1.8;
   font-family: "Poppins","Prompt", sans-serif;
@@ -22,30 +21,65 @@ body, html {
   border: none; 
 }
 
-.background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
+h3,b,i {
+  font-family: "Poppins","Prompt", sans-serif;
+  color: #4CAF50;
+}
+
+a {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    font-family: "Poppins","Prompt", sans-serif;
+    color: #4CAF50;
+    font-size: 0.8em;
+    text-decoration: none;
+    float: right;
+}
+a:hover {
+    color: #4CAF50;
+}
+
+.go {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.go:hover {
+    background-color: #4CAF50;
+}
+
+.fb {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.fb:hover {
+    background-color: #4CAF50;
 }
 
 form{
-    height: 520px;
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    width: 300px;
+    height: 440px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
 }
+
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -58,40 +92,19 @@ form h3{
 }
 
 label{
+    color: #808080;
+    font-size: 0.9em;
     display: block;
     margin-top: 30px;
-    font-size: 16px;
     font-weight: 600;
 }
-input{
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: rgba(255,255,255,0.07);
-    border-radius: 3px;
-    padding: 0 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #080710;
 
-}
 ::placeholder{
     color: #e5e5e5;
 }
 
 body{
-  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280412.jpg?w=900&t=st=1659248522~exp=1659249122~hmac=0f488734b311c91cca32b48a3e28960f270b334ae99d9c15d3948cc30b7c3788);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 5px;
+  background-color: #333333;
 }
 
 

@@ -1,144 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Register Page</title>
- 
+<html>
+  <head>
+    <title>SignUp</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;500;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <!--Stylesheet-->
-    <style media="screen">
-      *,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-body{
-  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-illustration_23-2149280420.jpg?w=1380&t=st=1659248320~exp=1659248920~hmac=a3f90eef0fe5b7ba814c7af29489c3a6c6f73a8008718f1c131f989342347827);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.background{
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-}
-.background .shape{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-form{
-    height: 520px;
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-}
-form *{
-    font-family: "Poppins","Prompt", sans-serif;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
+    <style>
+      body {
+        font-family: "Poppins","Prompt", sans-serif;
+        background-color: #333333;
+      }
 
-form h3{
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 42px;
-    text-align: center;
-}
+      .login-form {
+        width: 300px;
+        height: 297px;
+        background-color: white;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
+      }
 
-label{
-    display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-}
-input{
-    display: block;
-    height: 50px;
-    width: 100%;
-    background-color: rgba(255,255,255,0.07);
-    border-radius: 3px;
-    padding: 0 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #080710;
-    cursor: pointer;
-}
-::placeholder{
-    color: #e5e5e5;
-}
-button{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 5px;
-}
-.social{
-  margin-top: 30px;
-  display: flex;
-}
-.social div{
-  background: red;
-  width: 150px;
-  border-radius: 3px;
-  padding: 5px 10px 10px 5px;
-  background-color: rgba(255,255,255,0.27);
-  color: #eaf0fb;
-  text-align: center;
-}
-.social div:hover{
-  background-color: rgba(255,255,255,0.47);
-}
-.social .fb{
-  margin-left: 214px;
-}
-.social i{
-  margin-right: 4px;
-}
+      .login-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #4CAF50;
+      }
 
+      .login-form label {
+        display: block;
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        font-family: "Poppins","Prompt", sans-serif;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      .login-form input[type="submit"] {
+        font-family: "Poppins","Prompt", sans-serif;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9em;
+      }
+
+      .login-form input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .login-form a {
+        color: #ffffff;
+        font-size: 0.8em;
+        text-decoration: none;
+        float: right;
+      }
+
+      .login-form a:hover {
+        color: #ffffff;
+      }
+
+      .login-form .go {
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .login-form .go:hover {
+        background-color: #f0f0f0;
+      }
+
+      .login-form .fb {
+        display: inline-block;
+        margin-left: 10px;
+        
+      }
+
+      .login-form .fb:hover {
+        background-color: #f0f0f0;
+      }
     </style>
-</head>
-<body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form method="post">
-        <h3>ลงทะเบียน</h3>
-
-        <label for="username">ชื่อผู้ใช้</label>
-        <input name="username" id="username" required placeholder="อีเมล์ หรือ เบอร์โทรศัพท์">
-
-        <label for="password">รหัสผ่าน</label>
-        <input type="password" name="password" id="password" required placeholder="รหัสผ่าน">
-
-        <button><input type="submit" value="ลงทะเบียน"></button> 
-
-        <div class="social">
-          <a href="login" class="go"></i>ล็อกอิน</a>
-          <a href="{{ url_for('auth.Home') }}" class="fb">หน้าแรก</a>
-        </div>
-    </form>
-</body>
+  </head>
+  <body>
+    <form class="login-form" method="post">
+      <h1>ลงทะเบียน</h1>
+      <label for="username">ชื่อผู้ใช้</label>
+      <input type="text" name="username" id="username" required placeholder="อีเมล์ หรือ เบอร์โทรศัพท์">
+      <label for="password">รหัสผ่าน</label>
+      <input type="password" name="password" id="password" required placeholder="รหัสผ่าน">
+      <input type="submit" value="ลงทะเบียน">
+      <a href="login" class="go"></i>ลงชื่อเข้าใช้</a>
+      <a href="{{ url_for('auth.Home') }}" class="fb">หน้าแรก</a>
+    </form> 
+  </body>
 </html>
