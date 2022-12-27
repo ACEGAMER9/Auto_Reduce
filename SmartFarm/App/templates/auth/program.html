@@ -31,7 +31,7 @@ body{
   box-sizing: border-box;
 }
 
-a{
+a {
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
@@ -43,9 +43,13 @@ a{
   padding: 0 10px;
   font-family: "Poppins","Prompt", sans-serif;
   color: #4CAF50;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-decoration: none;
   float: right;
+}
+
+a:hover {
+  color: #4CAF50;
 }
 
 h2 {
@@ -58,27 +62,29 @@ h2 {
 }
 
 .select-box {
+  border-radius: 5px;
   display: flex;
   width: 400px;
   flex-direction: column;
+  border-radius: 5px;
 }
 
 .select-box .options-container {
-  background: #2f3640;
+  background: #696969;
   color: #f5f6fa;
   max-height: 0;
   width: 100%;
   opacity: 0;
   transition: all 0.4s;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
-
   order: 1;
+  border-radius: 5px;
 }
 
 .selected {
   background: #2f3640;
-  border-radius: 8px;
+  border-radius: 5px;
   margin-bottom: 8px;
   color: #f5f6fa;
   position: relative;
@@ -94,7 +100,7 @@ h2 {
   width: 32px;
   right: 10px;
   top: 5px;
-
+  border-radius: 5px;
   transition: all 0.4s;
 }
 
@@ -102,11 +108,13 @@ h2 {
   max-height: 240px;
   opacity: 1;
   overflow-y: scroll;
+  border-radius: 5px;
 }
 
 .select-box .options-container.active + .selected::after {
   transform: rotateX(180deg);
   top: -6px;
+  border-radius: 5px;
 }
 
 .select-box .options-container::-webkit-scrollbar {
@@ -118,24 +126,29 @@ h2 {
 .select-box .options-container::-webkit-scrollbar-thumb {
   background: #525861;
   border-radius: 0 8px 8px 0;
+  border-radius: 5px;
 }
 
 .select-box .option,
 .selected {
   padding: 12px 24px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .select-box .option:hover {
   background: #414b57;
+  border-radius: 5px;
 }
 
 .select-box label {
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .select-box .option .radio {
   display: none;
+  border-radius: 5px;
 }
 
 forms{
@@ -150,16 +163,22 @@ forms{
     padding: 50px 35px;
 }
 
-button{
-    margin-bottom: 5px;
+input{
+    font-family: "Poppins","Prompt", sans-serif;
     width: 100%;
-    height: 50%;
-    background-color: #ffffff;
-    color: #080710;
-    padding: 0px 0px;
-    border-radius: 3px;
+    background-color: #4CAF50;
+    color: rgb(240, 47, 47);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9em;
 }
+
+input:hover {
+        background-color: #d83f3f;
+      }
 
 form *{
     font-family: "Poppins","Prompt", sans-serif;
@@ -288,13 +307,13 @@ input{
               <div class="option">
                 <option value="9">โหมดอัตโนมัติ</option> 
               </div>
-              <button><input class="w3-white" type="submit" value="ยืนยัน"></button>
+              <input class="w3-white" type="submit" value="ยืนยัน">
           </select>
       </div>
     </form>
     <form name="program" id ="program" method="post">
       <input value="0" type="hidden" id="pipeline" name="pipeline" onchange="submitbotton();">
-      <button><input class="w3-red" type="submit" value="ยกเลิก"></button>
+      <input type="submit" value="ยกเลิก">
     </form>
   </div>
 
@@ -306,10 +325,10 @@ input{
     </a>
     <a href="{{ url_for('auth.Home') }}" class="w3-bar-item w3-button">หน้าแรก</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกเอาท์</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ออกจากระบบ</a>
         <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกอิน</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงชื่อเข้าใช้</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงทะเบียน</a>
     {% endif %}
     </a>
@@ -318,9 +337,9 @@ input{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกเอาท์</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ออกจากระบบ</a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกอิน</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงชื่อเข้าใช้</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงทะเบียน</a>
     {% endif %}
   </div>

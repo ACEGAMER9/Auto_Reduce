@@ -56,7 +56,7 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
-a{
+a {
   width: 100%;
   background-color: #ffffff;
   border-radius: 5px;
@@ -68,9 +68,12 @@ a{
   padding: 0 10px;
   font-family: "Poppins","Prompt", sans-serif;
   color: #4CAF50;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-decoration: none;
   float: right;
+}
+a:hover {
+  color: #4CAF50;
 }
 h2 {
   margin: 16px;
@@ -142,10 +145,10 @@ body{
     
     <a href="#home" class="w3-bar-item w3-button">หน้าแรก</a>
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกเอาท์</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button w3-hide-small"></i> ออกจากระบบ</a>
       <a href="{{ url_for('auth.profile') }}" class="w3-bar-item w3-button" ><span ><i class="fa fa-user-circle" aria-hidden="true"></i>{{ g.user['username'] }}</span></a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ล็อกอิน</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงชื่อเข้าใช้</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button w3-hide-small"></i> ลงทะเบียน</a>
     {% endif %}
     </a>
@@ -154,9 +157,9 @@ body{
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
     {% if g.user %}
-      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกเอาท์</a>
+      <a href="{{ url_for('auth.logout') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ออกจากระบบ</a>
     {% else %}
-      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ล็อกอิน</a>
+      <a href="{{ url_for('auth.login') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงชื่อเข้าใช้</a>
       <a href="{{ url_for('auth.register') }}" class="w3-bar-item w3-button" onclick="toggleFunction()">ลงทะเบียน</a>
     {% endif %}
   </div>

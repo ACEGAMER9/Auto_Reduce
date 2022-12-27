@@ -15,7 +15,7 @@
 
       .login-form {
         width: 300px;
-        height: 297px;
+        height: 360px;
         background-color: white;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
         margin: auto;
@@ -86,30 +86,42 @@
       }
 
       .login-form .go:hover {
-        background-color: #f0f0f0;
+        color: #45a049;
       }
 
       .login-form .fb {
         display: inline-block;
-        margin-left: 10px;
+        margin-right: 186px;
         
       }
 
       .login-form .fb:hover {
-        background-color: #f0f0f0;
+        color: #45a049;
       }
     </style>
   </head>
   <body>
-    <form class="login-form" method="post">
+    <form class="login-form" method="post" onsubmit="return validatePassword()">
       <h1>ลงทะเบียน</h1>
       <label for="username">ชื่อผู้ใช้</label>
       <input type="text" name="username" id="username" required placeholder="อีเมล์ หรือ เบอร์โทรศัพท์">
       <label for="password">รหัสผ่าน</label>
       <input type="password" name="password" id="password" required placeholder="รหัสผ่าน">
+      <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="ยืนยันรหัสผ่าน" >
       <input type="submit" value="ลงทะเบียน">
       <a href="login" class="go"></i>ลงชื่อเข้าใช้</a>
       <a href="{{ url_for('auth.Home') }}" class="fb">หน้าแรก</a>
     </form> 
   </body>
+  <script>
+    function validatePassword() {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      if (password != confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      return true;
+    }
+  </script>
 </html>

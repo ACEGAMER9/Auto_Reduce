@@ -18,6 +18,8 @@ from sklearn.neural_network import MLPClassifier
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 ########## HOME PAGE ROUTE ##########
+
+
 @bp.route("/", methods=('GET', 'POST'))
 def Home():
 
@@ -262,51 +264,38 @@ def program():
     else:
         Status = "เหมาะสมกับการรดน้ำ"
 
-    def looping(pipeline):
-        while pipeline == "9":
-            Moisture = random.randrange(40, 100)
-            Status = prediction(Moisture, temp_city, hmdt, weather_desc)
-            if Status == 0:
-                cStatus = "0"
-                pipeline = "0"
-                client.publish("/auto_redue/mqtt/control/motor", cStatus)
-                print(">>>>>>", cStatus, "<<<<<<")
-                return pipeline
-            else:
-                cStatus = "9"
-                pipeline = "9"
-                client.publish("/auto_redue/mqtt/control/motor", cStatus)
-                print(cStatus)
-                time.sleep(1)
+    # def looping(pipeline):
+    #     while pipeline == "9":
+    #         Moisture = random.randrange(40, 100)
+    #         Status = prediction(Moisture, temp_city, hmdt, weather_desc)
+    #         if Status == 0:
+    #             cStatus = "0"
+    #             pipeline = "0"
+    #             client.publish("/auto_redue/mqtt/control/motor", cStatus)
+    #             print(">>>>>>", cStatus, "<<<<<<")
+    #             return pipeline
+    #         else:
+    #             cStatus = "9"
+    #             pipeline = "9"
+    #             client.publish("/auto_redue/mqtt/control/motor", cStatus)
+    #             print(cStatus)
+    #             time.sleep(1)
 
     if request.method == 'POST':
         pipeline = request.form['pipeline']
         client.username_pw_set("", "")
-        if pipeline != "9":
-            client.publish("/auto_redue/mqtt/control/motor", pipeline)
+        client.publish("/auto_redue/mqtt/control/motor", pipeline)
 
-            user_id = session.get('user_id')
-            if user_id is not None:
+        user_id = session.get('user_id')
+        if user_id is not None:
 
-                db.execute(
-                    "INSERT INTO datatrain (d_id, moisture, temperature, humidity, weather, watering) VALUES (?, ?, ?, ?, ?, ?)",
-                    (g.user['id'], Moisture, temp_city, hmdt, weather_desc, 1),
-                )
-                db.commit()
+            db.execute(
+                "INSERT INTO datatrain (d_id, moisture, temperature, humidity, weather, watering) VALUES (?, ?, ?, ?, ?, ?)",
+                (g.user['id'], Moisture, temp_city, hmdt, weather_desc, 1),
+            )
+            db.commit()
 
-            print(pipeline)
-        else:
-            pipeline = looping(pipeline)
-            client.publish("/auto_redue/mqtt/control/motor", pipeline)
-
-            if user_id is not None:
-                db.execute(
-                    "INSERT INTO datatrain (d_id, moisture, temperature, humidity, weather, watering) VALUES (?, ?, ?, ?, ?, ?)",
-                    (g.user['id'], Moisture, temp_city, hmdt, weather_desc, 1),
-                )
-                db.commit()
-
-            print(pipeline)
+        print(pipeline)
 
     return render_template('auth/program.html',
                            data={"temp": ftemp_city,
