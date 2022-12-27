@@ -52,6 +52,10 @@ a:hover {
   color: #4CAF50;
 }
 
+b {
+  color: #4CAF50;
+}
+
 h2 {
   margin: 16px;
 }
@@ -83,12 +87,13 @@ h2 {
 }
 
 .selected {
-  background: #2f3640;
+  background: #4CAF50;
   border-radius: 5px;
   margin-bottom: 8px;
   color: #f5f6fa;
   position: relative;
   order: 0;
+  cursor: pointer;
 }
 
 .selected::after {
@@ -151,6 +156,7 @@ h2 {
   border-radius: 5px;
 }
 
+
 forms{
     height: 80px;
     position: auto;
@@ -203,12 +209,11 @@ input{
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgb(100, 100, 100);
     border-radius: 3px;
     padding: 0 10px;
     font-size: 18px;
     font-weight: 600;
-    color: #080710;
 
 }
 ::placeholder{
@@ -252,7 +257,7 @@ input{
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:30px">
-    <h5><b><i class="fa fa-dashboard"></i> แผงควบคุม</b></h5>
+    <h5><i class="fa fa-dashboard"></i> แผงควบคุม</h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom w3-center">
@@ -283,7 +288,7 @@ input{
   </div>
   <div>
       <div id="txt" class="w3-center"></div><p> <span id="datetime"></span></p>
-      <div class="w3-center"><h4>สถานะ : {{data.Status}}</h4></div>
+      <div class="w3-center"><h4><b>สถานะ</b> : {{data.Status}}</h4></div>
   </div>
   <div class="w3-display-bottommiddle">
     <form name="program" id ="program" method="post">
@@ -364,13 +369,6 @@ input{
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
   }
-  // Modal Image Gallery
-  function onClick(element) {
-    document.getElementById("img01").src = element.src;
-    document.getElementById("modal01").style.display = "block";
-    var captionText = document.getElementById("caption");
-    captionText.innerHTML = element.alt;
-  }
   
   // Change style of navbar on scroll
   window.onscroll = function() {myFunction()};
@@ -401,10 +399,6 @@ input{
 function submitbotton()
 {
   document.program.submit();
-}
-
-  function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
 }
   </script>
 

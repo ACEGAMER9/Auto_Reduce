@@ -75,6 +75,11 @@ a {
 a:hover {
   color: #4CAF50;
 }
+
+b {
+  color: #4CAF50;
+}
+
 h2 {
   margin: 16px;
 }
@@ -169,7 +174,7 @@ body{
 {% if g.user %}
 <div class="w3-display-middle w3-center">
   <form name="home" id ="home" method="post">
-          <h2>SMART FARMING</h2>
+          <h2>ระบบเกษตร <b>อัจฉริยะ.</b></h2>
           <button><a href="{{ url_for('auth.program') }}" class="w3-button">เริ่มต้น</a></button>
           </form>
         </div>
@@ -179,7 +184,7 @@ body{
 </div>
 {% else %}
 <div class="w3-display-middle w3-center">
-  <h2>SMART FARMING</h2>
+  <h2>ระบบเกษตร <b>อัจฉริยะ.</b></h2>
 </div>
 {% endif %}
 
